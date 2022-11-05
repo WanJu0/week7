@@ -1,0 +1,60 @@
+body{
+    margin: 0px;
+}
+#title{
+    font-size: 40px;
+    font-weight: bold;
+    background-color: #a6caeb;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-family: serif;
+}
+#signin{
+    font-size: 20px;
+    font-family: serif;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    
+}
+#signup{
+    font-size: 20px;
+    font-family: serif;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+
+}
+#message{
+    font-size: 20px;
+    font-family: serif;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    
+}
+#message_2{
+    font-size: 20px;
+    font-family: serif;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    
+}
+#api{
+    font-size: 20px;
+    font-family: serif;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+#api_name{
+    font-size: 20px;
+    font-family: serif;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}

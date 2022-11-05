@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week6 會員註冊頁面</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='week4.css') }}" />
+    
+</head>
+<body>
+<div id="title">歡迎光臨,請註冊登入系統</div> 
+<div id=signup>
+    <div>
+        <h3>註冊帳號</h3>
+        <form action="/signup" method="POST">
+            姓名 <input type="text" name="nickname" /><br/>
+            帳號 <input type="text" name="name" /><br/>
+            密碼 <input type="password" name="password" /><br/>
+        <button>註冊</button>
+        </form>
+    </div>       
+</div>
+<hr>
+<div id=signin>
+    <div>
+        <h3>登入系統</h3>
+        <form action="/signin" method="POST">
+            帳號 <input type="text" name="name" /><br/>
+            密碼 <input type="password" name="password" /><br/>
+            <button>登入</button>
+        </form>  
+    </div>       
+</div>
+<script type="text/javascript"
+    src="{{ url_for('static',filename='script.js')}}"> </script>
+</body>
+</html>

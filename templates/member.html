@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week4 會員登入頁面</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='week4.css') }}" />
+    
+</head>
+<body>
+<div id="title">歡迎光臨,這是會員頁</div> 
+<div id=signin>
+    <div>
+        {{name}},很高興見到你 <br/>
+        <div><a href="/signout">登出系統</a></div><br/> 
+    </div>     
+</div>
+<div id=api>
+    <div>
+        <label>查詢會員姓名</label></br>
+        <input type="text" name="api_member" id="api_member" />
+        
+        <button onclick="apiData();">查詢</button>
+        <div id="member"></div></br>
+    </div>       
+</div>
+
+<div id=api_name>
+    <div>
+        <label>更新我的姓名</label></br>
+        <input type="text" name="api_update" id="api_update" />
+        <button onclick="apiUpdate();">更新</button>
+        <div id="member_update"></div>
+    </div>       
+</div>
+<hr>
+<div id=message>
+    <div>
+        <h3>快來留言</h3>
+        <form action="/message" method="POST">
+            內容 <input type="text" name="message" /><br/>
+            <button>送出</button>
+        </form>  
+    </div>       
+</div>
+<hr>
+<div >
+    <div>
+        {% for x in data %}
+        <div id=message_2>
+        {{ x }}</br>
+        </div>
+        {% endfor %} 
+    </div>
+</div>
+<script>
+    function apiData()
+    {
+        const usernameElement = document.getElementById("api_member");
+        const username = usernameElement.value;
+        // const data = {username}
+        console.log(username);
+        fetch(`http://127.0.0.1:3000/api/member?username=${username}`, {})
+        .then((response) => {
+            // 這裡會得到一個 ReadableStream 的物件
+            console.log(response);
+            // 可以透過 blob(), json(), text() 轉成可用的資訊
+            return response.json(); 
+        }).then((jsonData) => {
+            console.log(jsonData);
+            console.log(jsonData.data.name)
+            let result = document.getElementById("member");
+            result.innerHTML = jsonData.data.name+"("+jsonData.data.username+")";
+        }).catch((err) => {
+            console.log('錯誤:', err);
+            let result = document.getElementById("member");
+            result.innerHTML = "查無此人";
+        });
+
+    }
+    function apiUpdate()
+    {
+        const nameElement = document.getElementById("api_update");
+        const name = nameElement.value;
+        console.log(name);
+        let newName=
+            {
+                name:name,
+            };
+        console.log(newName);
+        console.log(newName);
+        fetch(`http://127.0.0.1:3000/api/member`,{
+            method: "PATCH" ,
+            credentials: "include",
+            body:JSON.stringify(newName),
+            cache:"no-cache",
+            headers:new Headers({
+                "content-type":"application/json"
+            })
+        })
+        .then(function(response){
+            if(response.status !==200){
+                console.log(`Response status was not 200:${response.status}`);
+                return ;
+            }
+
+            response.json().then(function(data){
+                console.log(data)
+                document.getElementById("member_update").innerHTML = "更新成功"
+            })
+        })
+        
+    }
+</script>
+</body>
+</html>
