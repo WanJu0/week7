@@ -132,14 +132,14 @@ def api_member():
         }
         print(data)
         print(type(data))
-        json_result=json.dumps(data)
+        json_result=jsonify(data)
         print("第一次轉換的格式:",type(json_result))
         
     else:
         data={
             "data": None
         }
-        json_result=json.dumps(data)
+        json_result=jsonify(data)
         print("第一次轉換的格式:",type(json_result))
     return json_result
 
@@ -159,12 +159,12 @@ def api_update():
         data={
             "ok":True
         }
-        json_result=json.dumps(data)
+        json_result=jsonify(data)
     else:
         data={
             "error":True
         }
-        json_result=json.dumps(data)
+        json_result=jsonify(data)
     return json_result
 
 app.run(port=3000)
