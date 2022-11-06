@@ -150,7 +150,6 @@ def api_update():
         print(session["name"])
         # 用json格式
         data = request.get_json()
-        data_json = json.dumps(data,ensure_ascii=False)
         response = make_response(jsonify(data,200))
         mycursor = connection.cursor()
         mycursor.execute("UPDATE member SET name=%s WHERE id=%s",(data["name"],session["id"]))
